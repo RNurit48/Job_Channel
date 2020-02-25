@@ -53,5 +53,11 @@
     <Compile Include="SQLManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BO\BO.csproj">
+      <Project>{95E2746E-8650-4EA1-9DFC-C4690591CD1F}</Project>
+      <Name>BO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

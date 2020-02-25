@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,10 +8,12 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// Accessible par toute les couches
+    /// Représente un utilisateur avec toute les informations le concernant
     /// </summary>
     public class Utilisateur
     {
+        private DataRow row;
+
         public int Id_Utilisateur { get; private set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
@@ -20,6 +23,11 @@ namespace BO
 
         public Utilisateur()
         {
+        }
+
+        public Utilisateur(DataRow row)
+        {
+            this.row = row;
         }
     }
 }

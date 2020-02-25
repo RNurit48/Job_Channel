@@ -21,7 +21,7 @@ namespace DAL
         /// <summary>
         /// Attributs de la connexion
         /// </summary>
-        protected SqlConnection connection;
+        protected SqlConnection connexion;
 
         /// <summary>
         /// Constructeur par défaut privé
@@ -30,9 +30,9 @@ namespace DAL
         {
             try
             {
-                connection = new SqlConnection();
-                connection.ConnectionString = "User id=user18;password=711user18;server=176.31.248.137;Trusted_Connection=no;database=user18";
-                connection.Open();
+                connexion = new SqlConnection();
+                connexion.ConnectionString = "User id=user18;password=711user18;server=176.31.248.137;Trusted_Connection=no;database=user18";
+                connexion.Open();
             }
             catch (SqlException e)
             {
@@ -68,7 +68,7 @@ namespace DAL
                 foreach (SqlParameter param in parameters)
                     objSelectCommand.Parameters.Add(param);
 
-                objSelectCommand.Connection = this.connection;
+                objSelectCommand.Connection = this.connexion;
                 SqlDataAdapter objDataAdapter = new SqlDataAdapter(objSelectCommand);
                 objDataAdapter.Fill(objDataSet);
             }
@@ -95,7 +95,7 @@ namespace DAL
                 SqlCommand objSelectCommand = new SqlCommand();
                 objSelectCommand.CommandText = nomProc;
                 objSelectCommand.CommandType = CommandType.StoredProcedure;
-                objSelectCommand.Connection = this.connection;
+                objSelectCommand.Connection = this.connexion;
                 foreach (SqlParameter param in parameters)
                     objSelectCommand.Parameters.Add(param);
 

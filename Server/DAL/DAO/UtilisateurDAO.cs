@@ -21,8 +21,26 @@ namespace DAL.DAO
         public UtilisateurDAO(SQLManager sQLManager) : base(sQLManager)
         {
         }
+        private SQLManager connexion = SQLManager.GetInstance();
 
-        
+        /// <summary>
+        /// Récupère la liste des utilisateurs
+        /// </summary>
+        /// <returns></returns>
+        public List<Utilisateur> GetAllUser()
+        {
+            List<Utilisateur> retour = new List<Utilisateur>();
+
+            DataSet dataset = connexion.ExcecuteQuery("SELECT * FROM UTILISATEUR", new List<SqlParameter>());
+
+            foreach (DataRow row in dataset.Tables[0].Rows)
+            {
+                retour.Add(new Utilisateur(row));
+            }
+            return retour;
+
+        }
+
 
     }
 }
