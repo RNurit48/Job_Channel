@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BO;
 using System.Data;
 using System.Data.SqlClient;
+using DAL.Configuration;
 
 namespace DAL.DAO
 {
@@ -35,12 +36,17 @@ namespace DAL.DAO
 
             foreach (DataRow row in dataset.Tables[0].Rows)
             {
-                retour.Add(new Utilisateur(row));
+                DataColumnCollection columns = row.Table.Columns;
+                Preference p = ((!columns.Contains("ID_PREFERENCE")) || row["ID_PREFERENCE"] == DBNull.Value )?  null  : ConfigDAO.preferenceDAO.GetPreferenceByID((int) row["ID_PREFERENCE"]);
+                Utilisateur u = new Utilisateur(row);
+                u.Preference = p;
+                retour.Add(u);
             }
             return retour;
 
         }
-
-
+        
     }
+
 }
+

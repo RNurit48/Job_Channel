@@ -65,5 +65,24 @@ namespace DAL.DAO
             return retour;
 
         }
+        /// <summary>
+        /// Permet d'ajouter une offre
+        /// </summary>
+        /// <param name="offre"></param>
+        /// <returns></returns>
+        public int InsertOffre(Offre offre)
+        {           
+         int retour = connexion.ExecuteNonProcStocke("InsertOffre", new List<SqlParameter>()
+         { 
+            new SqlParameter("@region", offre.Region.Id_Region),
+            new SqlParameter("@contrat", offre.Contrat.Id_Contrat),
+            new SqlParameter("@poste", offre.Poste.Id_Poste),
+            new SqlParameter("@titre", offre.Titre),
+            new SqlParameter("@description", offre.Description),
+            new SqlParameter("@date",offre.DatePublication),
+            new SqlParameter("@lien",offre.Lien)
+         });
+           return retour;
+        }
     }
 }

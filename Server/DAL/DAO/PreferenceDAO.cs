@@ -30,13 +30,25 @@ namespace DAL.DAO
         {
             List<Preference> retour = new List<Preference>();
 
-            DataSet dataset = connexion.ExcecuteQuery("SELECT * FROM PREFERENCE", new List<SqlParameter>());
+            DataSet dataset = connexion.ExcecuteQuery("SELECT * FROM UserPref", new List<SqlParameter>());
 
             foreach (DataRow row in dataset.Tables[0].Rows)
             {
                 retour.Add(new Preference(row));
             }
             return retour;
+
+        }
+        public Preference GetPreferenceByID(int id_preference)
+        {
+                   
+            DataSet dataset = connexion.ExcecuteQuery("SELECT * FROM UserPref where ID_PREFERENCE = id_preference", new List<SqlParameter>(id_preference));
+
+            if(dataset.Tables.Count > 0 && dataset.Tables[0].Rows.Count > 0)
+            {
+                return new Preference(dataset.Tables[0].Rows[0]);
+            }
+            return null;
 
         }
     }

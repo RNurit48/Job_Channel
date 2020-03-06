@@ -28,5 +28,26 @@ namespace BLL
             return ConfigDAO.posteDAO.GetAllPoste();
 
         }
+
+        public List<Utilisateur> GetUsers()
+        {
+            return ConfigDAO.utilisateurDAO.GetAllUser();
+
+        }
+        public List<Preference> GetPreferences()
+        {
+            return ConfigDAO.preferenceDAO.GetAllPreference();
+
+        }
+        public List<Offre> GetOffres()
+        {
+            return ConfigDAO.offreDAO.GetAllOffre();
+
+        }
+
+        public int InsertOffre(Offre offre)
+        {
+            return ConfigDAO.offreDAO.InsertOffre(offre);
+        }
     }
 }

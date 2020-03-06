@@ -15,7 +15,7 @@ namespace BO
     public class Contrat
     {
         [DataMember]
-        public int Id_Contrat { get; private set; }
+        public int Id_Contrat { get;  set; }
         [DataMember]
         public string Type { get; set; }
 
@@ -26,7 +26,8 @@ namespace BO
         public Contrat(DataRow row)
         {
             this.Id_Contrat = (int)row["ID_CONTRAT"];
-            this.Type = (string)row["TYPE_POSTE"];
+            this.Type = (string)row["CONTRAT"];
         }
+
     }
 }

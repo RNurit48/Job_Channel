@@ -14,9 +14,9 @@ namespace BO
     [DataContract]
     public class Region
     {
-        private DataRow row;
+      
         [DataMember]
-        public int Id_Region { get; private set; }
+        public int Id_Region { get;set; }
         [DataMember]
         public string Nom { get; set; }
 
@@ -29,5 +29,6 @@ namespace BO
             this.Id_Region = (int)row["ID_REGION"];
             this.Nom = (string)row["NOM_REGION"];
         }
+
     }
 }

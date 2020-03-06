@@ -5,8 +5,10 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using BO;
 using BLL;
+using BO;
+using DAL;
+using DAL.DAO;
 
 namespace API
 {
@@ -14,7 +16,7 @@ namespace API
     // REMARQUE : pour lancer le client test WCF afin de tester ce service, sélectionnez Service1.svc ou Service1.svc.cs dans l'Explorateur de solutions et démarrez le débogage.
     public class Service1 : IAnnonce
     {
-
+        private OffreDAO objoffre;
         Controller Controller = new Controller();
         public List<Contrat> GetContrats()
         {
@@ -29,6 +31,25 @@ namespace API
         public List<Poste> GetPostes()
         {
             return Controller.GetPostes();
+        }
+
+        public List<Utilisateur> GetUtilisateurs()
+        {
+            return Controller.GetUsers();
+        }
+
+        public List<Preference> GetPreferences()
+        {
+            return Controller.GetPreferences();
+        }
+        public List<Offre> GetOffres()
+        {
+            return Controller.GetOffres();
+        }
+
+        public int InsertOffre(Offre offre)
+        {
+            return (offre != null ? Controller.InsertOffre(offre) : 0);
         }
     }
 }

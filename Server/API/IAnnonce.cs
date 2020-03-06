@@ -25,6 +25,22 @@ namespace API
         [OperationContract]
         [WebGet(UriTemplate = "postes", ResponseFormat = WebMessageFormat.Json)]
         List<Poste> GetPostes();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "utilisateurs", ResponseFormat = WebMessageFormat.Json)]
+        List<Utilisateur> GetUtilisateurs();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "preferences", ResponseFormat = WebMessageFormat.Json)]
+        List<Preference> GetPreferences();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "offres", ResponseFormat = WebMessageFormat.Json)]
+        List<Offre> GetOffres();
+
+        [OperationContract]
+        [WebInvoke(UriTemplate = "offres", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        int InsertOffre(Offre offre);
     }
     
 }
