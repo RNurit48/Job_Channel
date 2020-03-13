@@ -1,4 +1,6 @@
 ﻿using BO;
+using BO.DTO;
+using DAL.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,7 +32,11 @@ namespace DAL.DAO
         {
             List<Offre> retour = new List<Offre>();
 
-            DataSet dataset = connexion.ExcecuteQuery("SELECT * FROM OFFRE", new List<SqlParameter>());
+            DataSet dataset = connexion.ExcecuteQuery(@"
+                SELECT * FROM OFFRE 
+                INNER JOIN REGION ON OFFRE.ID_REGION = REGION.ID_REGION
+                INNER JOIN CONTRAT ON OFFRE.ID_CONTRAT = CONTRAT.ID_CONTRAT
+                INNER JOIN POSTE ON OFFRE.ID_POSTE = POSTE.ID_POSTE", new List<SqlParameter>());
 
             foreach (DataRow row in dataset.Tables[0].Rows)
             {
@@ -40,6 +46,7 @@ namespace DAL.DAO
         
 
         }
+        #region filtrage
         /// <summary>
         /// Récupère les offres selon un ou plusieurs filtres
         /// </summary>
@@ -47,24 +54,43 @@ namespace DAL.DAO
         /// <param name="ID_CONTRAT">l'identifiant du contrat. CDI 1, CDD 2, Stage 3 ...</param>
         /// <param name="TITRE">Titre de l'offre, pour rechercher par nom et éviter une liste déroulante avec plusieurs noms qui mènent au même résultat</param>
         /// <returns>Retourne une liste d'offre</returns>
-        public List<Offre> GetOffreByFilter(int ID_REGION, int ID_CONTRAT, string TITRE)
+        public List<Offre> GetOffreByFilter (Filtre filtre)
         {
             List<Offre> retour = new List<Offre>();
-            
+            string query = "SELECT * FROM OFFRE";
+            var parameters = new List<SqlParameter>();
 
-            DataSet dataset = connexion.ExecuteProcStocke("GetOffreByFilter", new List<SqlParameter>()
-            {
-                new SqlParameter("@ID_REGION",ID_REGION),
-                new SqlParameter("@ID_CONTRAT",ID_CONTRAT),
-                new SqlParameter("@POSTE_NAME",TITRE)
-            });
-            foreach (DataRow row in dataset.Tables[0].Rows)
+            query = AddFilterQuery<int?>(query, "ID_REGION", "@REG_ID", "=", filtre.region?.Id_Region, parameters);
+            query = AddFilterQuery(query, "ID_CONTRAT", "@CON_ID", "=", filtre.contrat?.Id_Contrat, parameters);
+            query = AddFilterQuery(query, "ID_POSTE", "@POS_ID", "=", filtre.poste?.Id_Poste, parameters);
+            DataSet dataSet = SQLManager.ExcecuteQuery(query, parameters);
+
+            foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 retour.Add(new Offre(row));
             }
             return retour;
 
         }
+        private string AddFilterQuery<T>(string query, string member, string paramName, string opr, T value, List<SqlParameter> parameters)
+        {
+            if (value != null)
+            {
+                if (parameters.Count == 0)
+                {
+                    query += " WHERE ";
+                }
+                else
+                {
+                    query += " AND ";
+                }
+                query += $" {member} {opr} {paramName} ";
+                parameters.Add(new SqlParameter(paramName, value));
+            }
+            return query;
+        }
+        #endregion filtrage
+
         /// <summary>
         /// Permet d'ajouter une offre
         /// </summary>
@@ -84,5 +110,37 @@ namespace DAL.DAO
          });
            return retour;
         }
+        /// <summary>
+        /// Update d'une offre
+        /// </summary>
+        /// <param name="offre"></param>
+        /// <returns></returns>
+        public int UpdateOffre(Offre offre)
+        {
+            
+            int retour = connexion.ExecuteNonProcStocke("UpdateOffre", new List<SqlParameter>()
+         {
+            new SqlParameter("@ID_REGION", offre.Region.Id_Region),
+            new SqlParameter("@ID_CONTRAT", offre.Contrat.Id_Contrat),
+            new SqlParameter("@ID_POSTE", offre.Poste.Id_Poste),
+            new SqlParameter("@TITRE", offre.Titre),
+            new SqlParameter("@DESCRIPTION", offre.Description),
+            new SqlParameter("@DATEPUBLI",offre.DatePublication),
+            new SqlParameter("@LIEN",offre.Lien),
+            new SqlParameter("@NUMOFFRE", offre.NumOffre)
+         });
+            return retour;
+        }
+
+        public int DeleteOffre(Offre offre)
+        {
+            int retour = connexion.ExecuteNonProcStocke("DeleteOffre", new List<SqlParameter>()
+         {
+            new SqlParameter("@NUMOFFRE", offre.NumOffre)
+         });
+            return retour;
+        }
+
+       
     }
 }

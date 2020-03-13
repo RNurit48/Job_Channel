@@ -49,5 +49,15 @@ namespace BLL
         {
             return ConfigDAO.offreDAO.InsertOffre(offre);
         }
+
+        public int UpdateOffre(Offre offre)
+        {
+            return ConfigDAO.offreDAO.UpdateOffre(offre);
+        }
+
+        public int DeleteOffre(Offre offre)
+        {
+            return ConfigDAO.offreDAO.DeleteOffre(offre);
+        }
     }
 }

@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Job_Channel.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Confirmation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cete action est irréversible. Voulez-vous vraiment supprimer cette offre ?</Value>
+    </Setting>
+    <Setting Name="TitreSuppr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Suppression d'une offre</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -63,6 +63,14 @@ namespace Job_Channel
             CB_Region.DisplayMember = "Nom";
             CB_Region.ValueMember = "Id_Region";
             #endregion
+
+            //BTN_Publier.Enabled = false;
+            #region Check
+            //if (TxB_Description.Text != "Entrer la description de l\'offre" && TxB_Titre.Text != "Entrer le titre de l\'offre" && CB_Poste != null && CB_Region != null && CB_Contrat != null)
+            //{
+            //    BTN_Publier.Enabled = true;
+            //}
+            #endregion
         }
 
         #region CB_SelectedIndexChanged
@@ -102,7 +110,8 @@ namespace Job_Channel
 
         private void BTN_Publier_Click(object sender, EventArgs e)
         {
-                      
+          
+            
             Contrat c = (Contrat)CB_Contrat.SelectedItem;
             BO.Region r = (BO.Region)CB_Region.SelectedItem;
             Poste p = (Poste)CB_Poste.SelectedItem;
@@ -120,6 +129,12 @@ namespace Job_Channel
            
         }
 
-        
+        private void BTN_Consulter_Click(object sender, EventArgs e)
+        {
+            Form2 Form2 = new Form2();
+            Form2.Show();
+        }
+
+    
     }
 }

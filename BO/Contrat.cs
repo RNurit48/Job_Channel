@@ -26,8 +26,12 @@ namespace BO
         public Contrat(DataRow row)
         {
             this.Id_Contrat = (int)row["ID_CONTRAT"];
-            this.Type = (string)row["CONTRAT"];
+            this.Type = ((string)row["CONTRAT"]).Trim();
         }
 
+        public override string ToString()
+        {
+            return Type;
+        }
     }
 }

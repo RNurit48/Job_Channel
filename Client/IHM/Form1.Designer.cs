@@ -36,16 +36,16 @@ namespace Job_Channel
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BTN_Publier = new System.Windows.Forms.Button();
             this.DTP_DatePublication = new System.Windows.Forms.DateTimePicker();
-            this.CB_Poste = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.BTN_Consulter = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.CB_Contrat = new System.Windows.Forms.ComboBox();
-            this.CB_Region = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.TxB_Titre = new Job_Channel.TextBoxAdv();
             this.TxB_Description = new Job_Channel.TextBoxAdv();
             this.TxB_Lien = new Job_Channel.TextBoxAdv();
+            this.CB_Poste = new System.Windows.Forms.ComboBox();
+            this.CB_Contrat = new System.Windows.Forms.ComboBox();
+            this.CB_Region = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.BTN_Consulter = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -137,85 +137,6 @@ namespace Job_Channel
             this.DTP_DatePublication.Size = new System.Drawing.Size(259, 20);
             this.DTP_DatePublication.TabIndex = 8;
             // 
-            // CB_Poste
-            // 
-            this.CB_Poste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CB_Poste.FormattingEnabled = true;
-            this.CB_Poste.Location = new System.Drawing.Point(3, 89);
-            this.CB_Poste.Name = "CB_Poste";
-            this.CB_Poste.Size = new System.Drawing.Size(259, 21);
-            this.CB_Poste.TabIndex = 15;
-            this.CB_Poste.Text = "Poste proposé";
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.BTN_Consulter, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(274, 96);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 351F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(325, 351);
-            this.tableLayoutPanel3.TabIndex = 3;
-            // 
-            // BTN_Consulter
-            // 
-            this.BTN_Consulter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BTN_Consulter.Location = new System.Drawing.Point(3, 3);
-            this.BTN_Consulter.Name = "BTN_Consulter";
-            this.BTN_Consulter.Size = new System.Drawing.Size(319, 345);
-            this.BTN_Consulter.TabIndex = 1;
-            this.BTN_Consulter.Text = "Consulter";
-            this.BTN_Consulter.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(605, 96);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(192, 351);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // CB_Contrat
-            // 
-            this.CB_Contrat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CB_Contrat.FormattingEnabled = true;
-            this.CB_Contrat.Location = new System.Drawing.Point(3, 115);
-            this.CB_Contrat.Name = "CB_Contrat";
-            this.CB_Contrat.Size = new System.Drawing.Size(259, 21);
-            this.CB_Contrat.TabIndex = 16;
-            this.CB_Contrat.Text = "Contrat proposé";
-            // 
-            // CB_Region
-            // 
-            this.CB_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CB_Region.FormattingEnabled = true;
-            this.CB_Region.Location = new System.Drawing.Point(3, 270);
-            this.CB_Region.Name = "CB_Region";
-            this.CB_Region.Size = new System.Drawing.Size(259, 21);
-            this.CB_Region.TabIndex = 17;
-            this.CB_Region.Text = "Région de l\'offre";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 93);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Publier une offre";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // TxB_Titre
             // 
             this.TxB_Titre.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -248,6 +169,86 @@ namespace Job_Channel
             this.TxB_Lien.Size = new System.Drawing.Size(259, 89);
             this.TxB_Lien.TabIndex = 13;
             this.TxB_Lien.Text = "Entrer le lien de l\'offre";
+            // 
+            // CB_Poste
+            // 
+            this.CB_Poste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Poste.FormattingEnabled = true;
+            this.CB_Poste.Location = new System.Drawing.Point(3, 89);
+            this.CB_Poste.Name = "CB_Poste";
+            this.CB_Poste.Size = new System.Drawing.Size(259, 21);
+            this.CB_Poste.TabIndex = 15;
+            this.CB_Poste.Text = "Poste proposé";
+            // 
+            // CB_Contrat
+            // 
+            this.CB_Contrat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Contrat.FormattingEnabled = true;
+            this.CB_Contrat.Location = new System.Drawing.Point(3, 115);
+            this.CB_Contrat.Name = "CB_Contrat";
+            this.CB_Contrat.Size = new System.Drawing.Size(259, 21);
+            this.CB_Contrat.TabIndex = 16;
+            this.CB_Contrat.Text = "Contrat proposé";
+            // 
+            // CB_Region
+            // 
+            this.CB_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_Region.FormattingEnabled = true;
+            this.CB_Region.Location = new System.Drawing.Point(3, 270);
+            this.CB_Region.Name = "CB_Region";
+            this.CB_Region.Size = new System.Drawing.Size(259, 21);
+            this.CB_Region.TabIndex = 17;
+            this.CB_Region.Text = "Région de l\'offre";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.BTN_Consulter, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(274, 96);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 351F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(325, 351);
+            this.tableLayoutPanel3.TabIndex = 3;
+            // 
+            // BTN_Consulter
+            // 
+            this.BTN_Consulter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_Consulter.Location = new System.Drawing.Point(3, 3);
+            this.BTN_Consulter.Name = "BTN_Consulter";
+            this.BTN_Consulter.Size = new System.Drawing.Size(319, 345);
+            this.BTN_Consulter.TabIndex = 1;
+            this.BTN_Consulter.Text = "Consulter";
+            this.BTN_Consulter.UseVisualStyleBackColor = true;
+            this.BTN_Consulter.Click += new System.EventHandler(this.BTN_Consulter_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(605, 96);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(192, 351);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(265, 93);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Publier une offre";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 

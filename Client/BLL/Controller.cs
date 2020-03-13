@@ -123,5 +123,68 @@ namespace BLL
 
 
         }
+
+        public List<Offre> GetAllOffres()
+        {
+
+            //instanciation d'un RestRequest avec la route et la méthode GET appelé
+            RestRequest requete = new RestRequest("offres", Method.GET);
+            //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
+            IRestResponse<List<Offre>> retour = RestClient.Execute<List<Offre>>(requete);
+            //si retour status code ==200
+            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //retour des data
+                return retour.Data;
+            }
+            //si pas de status ok alors renvoi d'une liste vide
+            return new List<Offre>();
+        }
+
+        public int UpdateOffre(Offre offre)
+        {
+            int resultat = 0;
+            //instanciation d'un RestRequest avec la route et la méthode  appelé
+            RestRequest requete = new RestRequest("offres", Method.PUT);
+            requete.AddJsonBody(ParseJson(offre));
+            //envoi de la requête avec attente de la réponse et dé-sérialisation de la réponse 
+            IRestResponse<int> retour = RestClient.Execute<int>(requete);
+            //si retour statut code ==200
+            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                resultat = retour.Data;
+                //retour des data
+                return resultat;
+            }
+            resultat = -1;
+            //si pas de statut ok alors renvoi -1
+            return resultat;
+
+
+
+        }
+
+        public int DeleteOffre(Offre offre)
+        {
+            int resultat = 0;
+            //instanciation d'un RestRequest avec la route et la méthode  appelé
+            RestRequest requete = new RestRequest("offres", Method.DELETE);
+            requete.AddJsonBody(ParseJson(offre));
+            //envoi de la requête avec attente de la réponse et dé-sérialisation de la réponse 
+            IRestResponse<int> retour = RestClient.Execute<int>(requete);
+            //si retour statut code ==200
+            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                resultat = retour.Data;
+                //retour des data
+                return resultat;
+            }
+            resultat = -1;
+            //si pas de statut ok alors renvoi -1
+            return resultat;
+
+
+
+        }
     }
 }

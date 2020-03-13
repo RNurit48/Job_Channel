@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contrat.cs" />
+    <Compile Include="DTO\Filtre.cs" />
     <Compile Include="Offre.cs" />
     <Compile Include="Poste.cs" />
     <Compile Include="Preference.cs" />
@@ -51,5 +52,6 @@
     <Compile Include="Region.cs" />
     <Compile Include="Utilisateur.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

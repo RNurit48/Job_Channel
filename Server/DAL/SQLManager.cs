@@ -23,7 +23,9 @@ namespace DAL
         /// </summary>
         protected SqlConnection connexion;
 
-
+        /// <summary>
+        /// Chaîne de connexion à la BDD
+        /// </summary>
         protected String ConnectionString = "User id=user18;password=711user18;server=176.31.248.137;Trusted_Connection=no;database=user18";
         /// <summary>
         /// Constructeur par défaut privé

@@ -51,5 +51,15 @@ namespace API
         {
             return (offre != null ? Controller.InsertOffre(offre) : 0);
         }
+
+        public int UpdateOffre(Offre offre)
+        {
+            return (offre != null ? Controller.UpdateOffre(offre) : 0);
+        }
+
+        public int DeleteOffre(Offre offre)
+        {
+            return (offre != null ? Controller.DeleteOffre(offre) : 0);
+        }
     }
 }

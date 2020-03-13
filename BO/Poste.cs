@@ -26,8 +26,12 @@ namespace BO
         public Poste(DataRow row)
         {
             this.Id_Poste = (int)row["ID_POSTE"];
-            this.Type = (string)row["TYPE_POSTE"];
+            this.Type = ((string)row["TYPE_POSTE"]).Trim();
         }
 
+        public override string ToString()
+        {
+            return Type;
+        }
     }
 }
