@@ -1,4 +1,5 @@
 ﻿using BO;
+using BO.DTO;
 using DAL.Configuration;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,12 @@ namespace BLL
         public List<Offre> GetOffres()
         {
             return ConfigDAO.offreDAO.GetAllOffre();
+
+        }
+
+        public List<Offre> GetOffresFilter(Filtre filtre)
+        {
+            return ConfigDAO.offreDAO.GetOffreByFilter(filtre);
 
         }
 

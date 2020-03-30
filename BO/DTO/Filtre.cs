@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BO.DTO
 {
+   
     [DataContract]
    public class Filtre
     {
@@ -17,12 +18,15 @@ namespace BO.DTO
         [DataMember]
         public Poste poste;
        
-        public void  FiltersOffreRequest(Region region, Contrat contrat, Poste poste)
+        public Filtre(Region region, Contrat contrat, Poste poste)
         {
+            
             this.region = region;
             this.contrat = contrat;
             this.poste = poste;
 
         }
+
+        public Filtre() { }
     }
 }

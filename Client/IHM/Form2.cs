@@ -23,16 +23,14 @@ namespace Job_Channel
         }
 
         private Controller controller = new Controller();
-        private BO.Region RegionCourante = null;
-        private Contrat ContratCourant = null;
-        private Poste PosteCourant = null;
-        private Filtre filterOffreRequest = new Filtre();
 
 
         #region BindingSources
 
         private BindingSource BindingSourceOffre = new BindingSource();
-      
+        private BindingSource BindingSourceRegionF= new BindingSource();
+        private BindingSource BindingSourceContratF = new BindingSource();
+        private BindingSource BindingSourcePosteF = new BindingSource();
         #endregion
         public Form2()
         {          
@@ -46,9 +44,7 @@ namespace Job_Channel
             #endregion
 
             #region Filtre
-            CB_FiltreR.DataSource = controller.GetAllRegions();
-            CB_FiltreP.DataSource = controller.GetAllPostes();
-            CB_FiltreC.DataSource = controller.GetAllContrats();
+           
 
             /// Ajout aux combobox d'une valeur par défaut 
             List<Contrat> ListContrat = new List<Contrat>
@@ -56,22 +52,33 @@ namespace Job_Channel
                 new Contrat() { Id_Contrat = -1, Type = "--  Filtre Contrat  --" }
             };
             ListContrat.AddRange(controller.GetAllContrats());
-            CB_FiltreC.DataSource = ListContrat;
+            BindingSourceContratF.DataSource = ListContrat;
+            CB_FiltreC.DataSource =BindingSourceContratF;
+          
 
             List<Poste> ListPostes = new List<Poste>
             {
                 new Poste() { Id_Poste = -1, Type = "--  Filtre poste  --" }
             };
             ListPostes.AddRange(controller.GetAllPostes());
-            CB_FiltreP.DataSource = ListPostes;
+            BindingSourcePosteF.DataSource = ListPostes;
+            CB_FiltreP.DataSource = BindingSourcePosteF;
+         
 
             List<BO.Region> listRegions = new List<BO.Region>
             {
                 new BO.Region() { Id_Region = -1, Nom = "--  Filtre region  --" }
             };
             listRegions.AddRange(controller.GetAllRegions());
-            CB_FiltreR.DataSource = listRegions;
+            BindingSourceRegionF.DataSource = listRegions;
+            CB_FiltreR.DataSource = BindingSourceRegionF;
+
+
             #endregion
+
+            CB_FiltreC.SelectedValueChanged += CB_FilterC_SelectedValueChanged;
+            CB_FiltreP.SelectedValueChanged += CB_FilterP_SelectedValueChanged;
+            CB_FiltreR.SelectedValueChanged += CB_FiltreR_SelectedValueChanged;
         }
 
         private void DGV_Offre_SelectionChanged(object sender, EventArgs e)
@@ -118,20 +125,14 @@ namespace Job_Channel
                 
                 
             }
-#endregion
+            #endregion
 
-            AppelDonnées();           
+            AppelDonnées();
         }
 
-        private void CB_FiltreR_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BO.Region region = (BO.Region)CB_FiltreR.SelectedValue;
-            if (region.Id_Region != -1)
-            {
-               filterOffreRequest.region = region;
-            }
-            else filterOffreRequest.region = null;
-
+        private void CB_FiltreR_SelectedValueChanged(object sender, EventArgs e)
+        {           
+               RefreshOffreSelectioned();        
         }
 
         private void  CB_FilterC_SelectedValueChanged(object sender, EventArgs e)
@@ -144,31 +145,34 @@ namespace Job_Channel
             RefreshOffreSelectioned();
         }
 
-        public  void RefreshOffreSelectioned()
+        public void RefreshOffreSelectioned()
         {
-
-            BO.Region region = (BO.Region)CB_FiltreR.SelectedItem;
-            Contrat contrat = (Contrat)CB_FiltreC.SelectedItem;
-            Poste poste = (Poste)CB_FiltreP.SelectedItem;
             
+            BO.Region region = ((BO.Region)CB_FiltreR.SelectedItem).Id_Region == -1 ? null :(BO.Region)CB_FiltreR.SelectedItem;
+            Contrat contrat = ((Contrat)CB_FiltreC.SelectedItem).Id_Contrat == -1 ? null : (Contrat)CB_FiltreC.SelectedItem;
+            Poste poste = ((Poste)CB_FiltreP.SelectedItem).Id_Poste == -1 ? null : (Poste)CB_FiltreP.SelectedItem;
+           
 
-            // Fix Bug out of Range exception
-            offreSource.DataSource = null;
-
+            
             try
             {
-                var t = controller.GetAllOffres(new FilterOffreRequest(region, contrat, poste));
-                offreSource.DataSource = t.Result;
+                if (region == null && contrat == null && poste == null)
+                {
+                    AppelDonnées();
+                    
+                }
+                else
+                {
+                    DGV_Offre.DataSource = controller.GetOffresFiltrers(new Filtre(region, contrat, poste));
+                }
+               
 
             }
             catch { }
 
-            if (DGV_Offre.RowCount > 0)
-            {
-                this.DGV_Offre.Columns["Id"].Visible = false;
-            }
+            
 
-           
+
         }
     }
 }

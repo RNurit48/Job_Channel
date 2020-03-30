@@ -120,7 +120,7 @@ namespace Job_Channel
             Offre f = new Offre(TxB_Titre.Text, TxB_Description.Text, DTP_DatePublication.Value, r, c, p,TxB_Lien.Text);
 
 
-            int resultat = objcontroller.PostOffre(f);
+            int resultat = Convert.ToInt32(objcontroller.PostOffre(f));
 
           
             

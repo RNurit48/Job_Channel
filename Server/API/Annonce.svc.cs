@@ -5,8 +5,10 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 using BLL;
 using BO;
+using BO.DTO;
 using DAL;
 using DAL.DAO;
 
@@ -33,23 +35,23 @@ namespace API
             return Controller.GetPostes();
         }
 
-        public List<Utilisateur> GetUtilisateurs()
+        public Task <List<Utilisateur>> GetUtilisateurs()
         {
-            return Controller.GetUsers();
+            return Task.FromResult(Controller.GetUsers());
         }
 
-        public List<Preference> GetPreferences()
+        public  Task <List<Preference>> GetPreferences()
         {
-            return Controller.GetPreferences();
+            return  Task.FromResult(Controller.GetPreferences()); 
         }
         public List<Offre> GetOffres()
         {
             return Controller.GetOffres();
         }
 
-        public int InsertOffre(Offre offre)
+        public Task <int> InsertOffre(Offre offre)
         {
-            return (offre != null ? Controller.InsertOffre(offre) : 0);
+            return Task.FromResult((offre != null ? Controller.InsertOffre(offre) : 0));
         }
 
         public int UpdateOffre(Offre offre)
@@ -60,6 +62,12 @@ namespace API
         public int DeleteOffre(Offre offre)
         {
             return (offre != null ? Controller.DeleteOffre(offre) : 0);
+        }
+
+       
+        public List<Offre> GetOffresFilter(Filtre filtre)
+        {
+             return Controller.GetOffresFilter(filtre);
         }
     }
 }

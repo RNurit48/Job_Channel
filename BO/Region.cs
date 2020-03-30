@@ -26,8 +26,8 @@ namespace BO
 
         public Region(DataRow row)
         {
-            this.Id_Region = (int)row["ID_REGION"];
-            this.Nom = ((string)row["NOM_REGION"]).Trim();
+            Id_Region = (int)row["ID_REGION"];
+            Nom = ((string)row["NOM_REGION"]);
         }
 
         public Region(int id_Region, string nom)

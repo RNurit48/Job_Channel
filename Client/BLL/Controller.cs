@@ -1,10 +1,14 @@
 ﻿using BO;
+using BO.DTO;
 using Newtonsoft.Json;
+using NuGet.Common;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BLL
@@ -26,28 +30,31 @@ namespace BLL
         {
            
             RestRequest requete = new RestRequest("contrats", Method.GET);
-            IRestResponse<List<Contrat>> retour = RestClient.Execute<List<Contrat>>(requete);
-            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+          IRestResponse<List<Contrat>>retour = RestClient.Execute<List<Contrat>>(requete);
+
+            
+            if (retour.StatusCode == HttpStatusCode.OK)
             {
                 return retour.Data;
             }
             return new List<Contrat>();
         }
-        public List<Region> GetAllRegions()
+        public  List<Region> GetAllRegions()
         {
-          
+            List<Region> r = null;
             //instanciation d'un RestRequest avec la route et la méthode GET appelé
             RestRequest requete = new RestRequest("regions", Method.GET);
             //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
-            IRestResponse<List<Region>> retour = RestClient.Execute<List<Region>>(requete);
+           IRestResponse<List<Region>> retour = RestClient.Execute<List<Region>>(requete);
             //si retour status code ==200
-            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            
+            if (retour.StatusCode == HttpStatusCode.OK)
             {
                 //retour des data
                 return retour.Data;
             }
             //si pas de status ok alors renvoi d'une liste vide
-            return new List<Region>();
+            return new List<BO.Region>();
         }
 
         public List<Poste> GetAllPostes()
@@ -56,8 +63,9 @@ namespace BLL
             //instanciation d'un RestRequest avec la route et la méthode GET appelé
             RestRequest requete = new RestRequest("postes", Method.GET);
             //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
-            IRestResponse<List<Poste>> retour = RestClient.Execute<List<Poste>>(requete);
+           IRestResponse<List<Poste>> retour = RestClient.Execute<List<Poste>>(requete);
             //si retour status code ==200
+           
             if (retour.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 //retour des data
@@ -66,53 +74,56 @@ namespace BLL
             //si pas de status ok alors renvoi d'une liste vide
             return new List<Poste>();
         }
-        public List<Utilisateur> GetUtilisateurs()
+        public async Task <List<Utilisateur>> GetUtilisateurs()
         {
 
             //instanciation d'un RestRequest avec la route et la méthode GET appelé
             RestRequest requete = new RestRequest("utilisateurs", Method.GET);
             requete.RequestFormat = DataFormat.Json;
             //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
-            IRestResponse<List<Utilisateur>> retour = RestClient.Execute<List<Utilisateur>>(requete);
+           Task <IRestResponse<List<Utilisateur>>> retour = RestClient.ExecuteAsync<List<Utilisateur>>(requete);
             //si retour status code ==200
-            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            await retour;
+            if (retour.Result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 //retour des data
-                return retour.Data;
+                return retour.Result.Data;
             }
             //si pas de status ok alors renvoi d'une liste vide
             return new List<Utilisateur>();
         }
 
-        public List<Preference> GetPreference()
+        public  async Task <List<Preference>> GetPreference()
         {
 
             //instanciation d'un RestRequest avec la route et la méthode GET appelé
             RestRequest requete = new RestRequest("preferences", Method.GET);
             requete.RequestFormat = DataFormat.Json;
             //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
-            IRestResponse<List<Preference>> retour = RestClient.Execute<List<Preference>>(requete);
+          Task  <IRestResponse<List<Preference>>> retour = RestClient.ExecuteAsync<List<Preference>>(requete);
             //si retour status code ==200
-            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            await retour;
+            if (retour.Result.StatusCode == HttpStatusCode.OK)
             {
                 //retour des data
-                return retour.Data;
+                return retour.Result.Data;
             }
             //si pas de status ok alors renvoi d'une liste vide
             return new List<Preference>();
         }
-        public int PostOffre(Offre offre)
+        public async Task<int> PostOffre(Offre offre)
         {
             int resultat = 0;
             //instanciation d'un RestRequest avec la route et la méthode  appelé
             RestRequest requete = new RestRequest("offres", Method.POST);
             requete.AddJsonBody(ParseJson(offre));
             //envoi de la requête avec attente de la réponse et dé-sérialisation de la réponse 
-            IRestResponse<int> retour = RestClient.Execute<int>(requete);
+          Task  <IRestResponse<int>> retour = RestClient.ExecuteAsync<int>(requete);
             //si retour statut code ==200
-            if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            await retour;
+            if (retour.Result.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                resultat = retour.Data;
+                resultat = retour.Result.Data;
                 //retour des data
                 return resultat;
             }
@@ -186,5 +197,23 @@ namespace BLL
 
 
         }
+
+        public  List<Offre> GetOffresFiltrers(Filtre filtre)
+        {
+
+            List<Offre> listOffre = null;
+            RestRequest request = new RestRequest("offresFiltrer", Method.POST);
+            request.AddJsonBody(ParseJson(filtre));
+
+            IRestResponse<List<Offre>> retour = RestClient.Execute<List<Offre>>(request);
+           
+
+            if (retour.StatusCode == HttpStatusCode.OK)
+            {
+                listOffre = retour.Data;
+            }
+            return listOffre;
+        }
+
     }
 }

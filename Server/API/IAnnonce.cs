@@ -1,4 +1,5 @@
 ﻿using BO;
+using BO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace API
 {
@@ -28,19 +30,24 @@ namespace API
 
         [OperationContract]
         [WebGet(UriTemplate = "utilisateurs", ResponseFormat = WebMessageFormat.Json)]
-        List<Utilisateur> GetUtilisateurs();
+       Task <List<Utilisateur>> GetUtilisateurs();
 
         [OperationContract]
         [WebGet(UriTemplate = "preferences", ResponseFormat = WebMessageFormat.Json)]
-        List<Preference> GetPreferences();
+       Task <List<Preference>> GetPreferences();
 
         [OperationContract]
         [WebGet(UriTemplate = "offres", ResponseFormat = WebMessageFormat.Json)]
         List<Offre> GetOffres();
 
         [OperationContract]
+        [WebInvoke(UriTemplate = "offresFiltrer", Method ="POST", ResponseFormat = WebMessageFormat.Json)]
+        List<Offre> GetOffresFilter(Filtre filtre);
+
+
+        [OperationContract]
         [WebInvoke(UriTemplate = "offres", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        int InsertOffre(Offre offre);
+       Task <int> InsertOffre(Offre offre);
 
         [OperationContract]
         [WebInvoke(UriTemplate = "offres", Method = "PUT", ResponseFormat = WebMessageFormat.Json)]

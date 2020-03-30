@@ -50,19 +50,19 @@ namespace DAL.DAO
         /// <summary>
         /// Récupère les offres selon un ou plusieurs filtres
         /// </summary>
-        /// <param name="ID_REGION"> l'identifiant de la région, ex: 1 pour Occitanie ...</param>
-        /// <param name="ID_CONTRAT">l'identifiant du contrat. CDI 1, CDD 2, Stage 3 ...</param>
-        /// <param name="TITRE">Titre de l'offre, pour rechercher par nom et éviter une liste déroulante avec plusieurs noms qui mènent au même résultat</param>
         /// <returns>Retourne une liste d'offre</returns>
         public List<Offre> GetOffreByFilter (Filtre filtre)
         {
             List<Offre> retour = new List<Offre>();
-            string query = "SELECT * FROM OFFRE";
+            string query = @"SELECT * FROM OFFRE 
+                INNER JOIN REGION ON OFFRE.ID_REGION = REGION.ID_REGION
+                INNER JOIN CONTRAT ON OFFRE.ID_CONTRAT = CONTRAT.ID_CONTRAT
+                INNER JOIN POSTE ON OFFRE.ID_POSTE = POSTE.ID_POSTE";
             var parameters = new List<SqlParameter>();
 
-            query = AddFilterQuery<int?>(query, "ID_REGION", "@REG_ID", "=", filtre.region?.Id_Region, parameters);
-            query = AddFilterQuery(query, "ID_CONTRAT", "@CON_ID", "=", filtre.contrat?.Id_Contrat, parameters);
-            query = AddFilterQuery(query, "ID_POSTE", "@POS_ID", "=", filtre.poste?.Id_Poste, parameters);
+            query = AddFilterQuery(query, "OFFRE.ID_REGION", "@ID_REGION", "=", filtre.region?.Id_Region, parameters);
+            query = AddFilterQuery(query, "OFFRE.ID_CONTRAT", "@ID_CONTRAT", "=", filtre.contrat?.Id_Contrat, parameters);
+            query = AddFilterQuery(query, "OFFRE.ID_POSTE", "@ID_POSTE", "=", filtre.poste?.Id_Poste, parameters);
             DataSet dataSet = SQLManager.ExcecuteQuery(query, parameters);
 
             foreach (DataRow row in dataSet.Tables[0].Rows)
