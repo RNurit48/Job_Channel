@@ -27,7 +27,7 @@ namespace BO
         public Region(DataRow row)
         {
             Id_Region = (int)row["ID_REGION"];
-            Nom = ((string)row["NOM_REGION"]);
+            Nom = ((string)row["NOM_REGION"]).Trim();
         }
 
         public Region(int id_Region, string nom)
@@ -38,7 +38,18 @@ namespace BO
 
         public override string ToString()
         {
-            return Nom ;
+            return Nom.Trim() ;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Region region &&
+                   Nom == region.Nom;
+        }
+
+        public override int GetHashCode()
+        {
+            return 217408413 + EqualityComparer<string>.Default.GetHashCode(Nom);
         }
     }
 }

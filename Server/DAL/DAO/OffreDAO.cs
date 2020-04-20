@@ -46,6 +46,29 @@ namespace DAL.DAO
         
 
         }
+        /// <summary>
+        /// Récupere les 10 dernière offres
+        /// </summary>
+        /// <returns></returns>
+        public List<Offre> GetLastOffre()
+        {
+            List<Offre> retour = new List<Offre>();
+
+            DataSet dataset = connexion.ExcecuteQuery(@"
+                SELECT TOP(10) * FROM OFFRE 
+                INNER JOIN REGION ON OFFRE.ID_REGION = REGION.ID_REGION
+                INNER JOIN CONTRAT ON OFFRE.ID_CONTRAT = CONTRAT.ID_CONTRAT
+                INNER JOIN POSTE ON OFFRE.ID_POSTE = POSTE.ID_POSTE 
+                ORDER BY DATEPUBLICATION DESC", new List<SqlParameter>());
+
+            foreach (DataRow row in dataset.Tables[0].Rows)
+            {
+                retour.Add(new Offre(row));
+            }
+            return retour;
+
+
+        }
         #region filtrage
         /// <summary>
         /// Récupère les offres selon un ou plusieurs filtres
@@ -63,6 +86,8 @@ namespace DAL.DAO
             query = AddFilterQuery(query, "OFFRE.ID_REGION", "@ID_REGION", "=", filtre.region?.Id_Region, parameters);
             query = AddFilterQuery(query, "OFFRE.ID_CONTRAT", "@ID_CONTRAT", "=", filtre.contrat?.Id_Contrat, parameters);
             query = AddFilterQuery(query, "OFFRE.ID_POSTE", "@ID_POSTE", "=", filtre.poste?.Id_Poste, parameters);
+            query = AddFilterQuery(query, "OFFRE.DATEPUBLICATION", "@debut", ">", filtre?.debut, parameters);
+            query = AddFilterQuery(query, "OFFRE.DATEPUBLICATION", "@fin", "<", filtre?.fin, parameters);
             DataSet dataSet = SQLManager.ExcecuteQuery(query, parameters);
 
             foreach (DataRow row in dataSet.Tables[0].Rows)
@@ -72,6 +97,18 @@ namespace DAL.DAO
             return retour;
 
         }
+       
+        /// <summary>
+        /// Ajoute une condition à la requete, ou petmet d'ajouter des parametres supplémentaires
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="member"></param>
+        /// <param name="paramName"></param>
+        /// <param name="opr"></param>
+        /// <param name="value"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         private string AddFilterQuery<T>(string query, string member, string paramName, string opr, T value, List<SqlParameter> parameters)
         {
             if (value != null)

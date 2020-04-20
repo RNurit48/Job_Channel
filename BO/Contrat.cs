@@ -33,5 +33,16 @@ namespace BO
         {
             return Type;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Contrat contrat &&
+                   Type == contrat.Type;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2049151605 + EqualityComparer<string>.Default.GetHashCode(Type);
+        }
     }
 }

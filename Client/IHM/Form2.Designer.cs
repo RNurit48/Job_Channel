@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.CB_FiltreR = new System.Windows.Forms.ComboBox();
 			this.CB_FiltreP = new System.Windows.Forms.ComboBox();
 			this.CB_FiltreC = new System.Windows.Forms.ComboBox();
+			this.DTP_Debut = new System.Windows.Forms.DateTimePicker();
+			this.DTP_Fin = new System.Windows.Forms.DateTimePicker();
+			this.Btn_10Last = new System.Windows.Forms.Button();
+			this.Btn_All = new System.Windows.Forms.Button();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
@@ -85,55 +90,101 @@
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 2;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.33333F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.66666F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// tableLayoutPanel2
 			// 
-			this.tableLayoutPanel2.ColumnCount = 4;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.35264F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.7733F));
+			this.tableLayoutPanel2.ColumnCount = 5;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.75819F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.72796F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.90668F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.08575F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.48171F));
 			this.tableLayoutPanel2.Controls.Add(this.CB_FiltreR, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.CB_FiltreP, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.CB_FiltreC, 2, 0);
+			this.tableLayoutPanel2.Controls.Add(this.DTP_Debut, 3, 0);
+			this.tableLayoutPanel2.Controls.Add(this.DTP_Fin, 4, 0);
+			this.tableLayoutPanel2.Controls.Add(this.Btn_10Last, 3, 1);
+			this.tableLayoutPanel2.Controls.Add(this.Btn_All, 4, 1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 44);
+			this.tableLayoutPanel2.RowCount = 2;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.83333F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.16667F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 48);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// CB_FiltreR
 			// 
 			this.CB_FiltreR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.CB_FiltreR.FormattingEnabled = true;
-			this.CB_FiltreR.Location = new System.Drawing.Point(3, 11);
+			this.CB_FiltreR.Location = new System.Drawing.Point(3, 3);
 			this.CB_FiltreR.Name = "CB_FiltreR";
-			this.CB_FiltreR.Size = new System.Drawing.Size(192, 21);
+			this.CB_FiltreR.Size = new System.Drawing.Size(135, 21);
 			this.CB_FiltreR.TabIndex = 0;
 			// 
 			// CB_FiltreP
 			// 
 			this.CB_FiltreP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.CB_FiltreP.FormattingEnabled = true;
-			this.CB_FiltreP.Location = new System.Drawing.Point(201, 11);
+			this.CB_FiltreP.Location = new System.Drawing.Point(144, 3);
 			this.CB_FiltreP.Name = "CB_FiltreP";
-			this.CB_FiltreP.Size = new System.Drawing.Size(192, 21);
+			this.CB_FiltreP.Size = new System.Drawing.Size(103, 21);
 			this.CB_FiltreP.TabIndex = 1;
 			// 
 			// CB_FiltreC
 			// 
 			this.CB_FiltreC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.CB_FiltreC.FormattingEnabled = true;
-			this.CB_FiltreC.Location = new System.Drawing.Point(399, 11);
+			this.CB_FiltreC.Location = new System.Drawing.Point(253, 3);
 			this.CB_FiltreC.Name = "CB_FiltreC";
-			this.CB_FiltreC.Size = new System.Drawing.Size(234, 21);
+			this.CB_FiltreC.Size = new System.Drawing.Size(136, 21);
 			this.CB_FiltreC.TabIndex = 2;
+			// 
+			// DTP_Debut
+			// 
+			this.DTP_Debut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.DTP_Debut.Location = new System.Drawing.Point(395, 3);
+			this.DTP_Debut.Name = "DTP_Debut";
+			this.DTP_Debut.Size = new System.Drawing.Size(185, 20);
+			this.DTP_Debut.TabIndex = 3;
+			this.DTP_Debut.ValueChanged += new System.EventHandler(this.DTP_Debut_ValueChanged);
+			// 
+			// DTP_Fin
+			// 
+			this.DTP_Fin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.DTP_Fin.Location = new System.Drawing.Point(586, 3);
+			this.DTP_Fin.Name = "DTP_Fin";
+			this.DTP_Fin.Size = new System.Drawing.Size(205, 20);
+			this.DTP_Fin.TabIndex = 4;
+			this.DTP_Fin.ValueChanged += new System.EventHandler(this.DTP_Fin_ValueChanged);
+			// 
+			// Btn_10Last
+			// 
+			this.Btn_10Last.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Btn_10Last.Location = new System.Drawing.Point(395, 24);
+			this.Btn_10Last.Name = "Btn_10Last";
+			this.Btn_10Last.Size = new System.Drawing.Size(185, 21);
+			this.Btn_10Last.TabIndex = 5;
+			this.Btn_10Last.Text = "10 dernières annonces";
+			this.Btn_10Last.UseVisualStyleBackColor = true;
+			this.Btn_10Last.Click += new System.EventHandler(this.Btn_10Last_Click);
+			// 
+			// Btn_All
+			// 
+			this.Btn_All.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Btn_All.Location = new System.Drawing.Point(586, 24);
+			this.Btn_All.Name = "Btn_All";
+			this.Btn_All.Size = new System.Drawing.Size(205, 21);
+			this.Btn_All.TabIndex = 6;
+			this.Btn_All.Text = "Toute les annonces";
+			this.Btn_All.UseVisualStyleBackColor = true;
+			this.Btn_All.Click += new System.EventHandler(this.Btn_All_Click);
 			// 
 			// tableLayoutPanel3
 			// 
@@ -143,11 +194,11 @@
 			this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
 			this.tableLayoutPanel3.Controls.Add(this.DGV_Offre, 0, 0);
 			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 53);
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 57);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(794, 394);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(794, 390);
 			this.tableLayoutPanel3.TabIndex = 1;
 			// 
 			// tableLayoutPanel4
@@ -174,7 +225,7 @@
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.74444F));
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.73975F));
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.7936F));
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(374, 388);
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(374, 384);
 			this.tableLayoutPanel4.TabIndex = 0;
 			// 
 			// tableLayoutPanel12
@@ -201,6 +252,7 @@
 			this.Lbl_Lien.Size = new System.Drawing.Size(81, 39);
 			this.Lbl_Lien.TabIndex = 1;
 			this.Lbl_Lien.Text = "Lien";
+			this.Lbl_Lien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// TxB_Lien
 			// 
@@ -235,6 +287,7 @@
 			this.Lbl_DatePubli.Size = new System.Drawing.Size(81, 39);
 			this.Lbl_DatePubli.TabIndex = 1;
 			this.Lbl_DatePubli.Text = "Date Publication";
+			this.Lbl_DatePubli.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// DTP_Publi
 			// 
@@ -268,6 +321,7 @@
 			this.Lbl_Description.Size = new System.Drawing.Size(80, 39);
 			this.Lbl_Description.TabIndex = 1;
 			this.Lbl_Description.Text = "Description";
+			this.Lbl_Description.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// TxB_Descri
 			// 
@@ -302,6 +356,7 @@
 			this.Lbl_Titre.Size = new System.Drawing.Size(81, 39);
 			this.Lbl_Titre.TabIndex = 1;
 			this.Lbl_Titre.Text = "Titre";
+			this.Lbl_Titre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// TxB_Titre
 			// 
@@ -336,6 +391,7 @@
 			this.Lbl_Poste.Size = new System.Drawing.Size(80, 39);
 			this.Lbl_Poste.TabIndex = 1;
 			this.Lbl_Poste.Text = "Poste";
+			this.Lbl_Poste.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// CB_Poste
 			// 
@@ -370,6 +426,7 @@
 			this.Lbl_Contrat.Size = new System.Drawing.Size(81, 39);
 			this.Lbl_Contrat.TabIndex = 1;
 			this.Lbl_Contrat.Text = "Contrat";
+			this.Lbl_Contrat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// CB_Contrat
 			// 
@@ -392,7 +449,7 @@
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(368, 67);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(368, 63);
 			this.tableLayoutPanel5.TabIndex = 0;
 			// 
 			// Btn_Modifier
@@ -400,7 +457,7 @@
 			this.Btn_Modifier.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Btn_Modifier.Location = new System.Drawing.Point(3, 3);
 			this.Btn_Modifier.Name = "Btn_Modifier";
-			this.Btn_Modifier.Size = new System.Drawing.Size(178, 61);
+			this.Btn_Modifier.Size = new System.Drawing.Size(178, 57);
 			this.Btn_Modifier.TabIndex = 0;
 			this.Btn_Modifier.Text = "Modifier";
 			this.Btn_Modifier.UseVisualStyleBackColor = true;
@@ -411,7 +468,7 @@
 			this.Btn_Supprimer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Btn_Supprimer.Location = new System.Drawing.Point(187, 3);
 			this.Btn_Supprimer.Name = "Btn_Supprimer";
-			this.Btn_Supprimer.Size = new System.Drawing.Size(178, 61);
+			this.Btn_Supprimer.Size = new System.Drawing.Size(178, 57);
 			this.Btn_Supprimer.TabIndex = 1;
 			this.Btn_Supprimer.Text = "Supprimer";
 			this.Btn_Supprimer.UseVisualStyleBackColor = true;
@@ -434,12 +491,14 @@
 			// 
 			// Lbl_Region
 			// 
+			this.Lbl_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.Lbl_Region.AutoSize = true;
-			this.Lbl_Region.Location = new System.Drawing.Point(3, 0);
+			this.Lbl_Region.Location = new System.Drawing.Point(3, 13);
 			this.Lbl_Region.Name = "Lbl_Region";
-			this.Lbl_Region.Size = new System.Drawing.Size(41, 13);
+			this.Lbl_Region.Size = new System.Drawing.Size(81, 13);
 			this.Lbl_Region.TabIndex = 0;
 			this.Lbl_Region.Text = "Région";
+			this.Lbl_Region.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// CB_Region
 			// 
@@ -452,12 +511,15 @@
 			// 
 			// DGV_Offre
 			// 
+			this.DGV_Offre.AllowUserToAddRows = false;
 			this.DGV_Offre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGV_Offre.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.DGV_Offre.Location = new System.Drawing.Point(3, 3);
+			this.DGV_Offre.MultiSelect = false;
 			this.DGV_Offre.Name = "DGV_Offre";
+			this.DGV_Offre.ReadOnly = true;
 			this.DGV_Offre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.DGV_Offre.Size = new System.Drawing.Size(408, 388);
+			this.DGV_Offre.Size = new System.Drawing.Size(408, 384);
 			this.DGV_Offre.TabIndex = 1;
 			this.DGV_Offre.SelectionChanged += new System.EventHandler(this.DGV_Offre_SelectionChanged);
 			// 
@@ -467,8 +529,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Form2";
-			this.Text = "Form2";
+			this.Text = "Job Channel";
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
@@ -527,5 +590,9 @@
         private System.Windows.Forms.ComboBox CB_Poste;
         private System.Windows.Forms.ComboBox CB_Contrat;
         private System.Windows.Forms.ComboBox CB_Region;
-    }
+		private System.Windows.Forms.DateTimePicker DTP_Debut;
+		private System.Windows.Forms.DateTimePicker DTP_Fin;
+		private System.Windows.Forms.Button Btn_10Last;
+		private System.Windows.Forms.Button Btn_All;
+	}
 }

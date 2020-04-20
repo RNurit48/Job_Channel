@@ -18,15 +18,15 @@ namespace API
 
         [OperationContract]
         [WebGet(UriTemplate = "contrats", ResponseFormat =WebMessageFormat.Json)]
-        List<Contrat> GetContrats();
+       Task <List<Contrat>> GetContrats();
 
         [OperationContract]
         [WebGet(UriTemplate = "regions", ResponseFormat = WebMessageFormat.Json)]
-        List<Region> GetRegion();
+       Task <List<Region>> GetRegion();
 
         [OperationContract]
         [WebGet(UriTemplate = "postes", ResponseFormat = WebMessageFormat.Json)]
-        List<Poste> GetPostes();
+        Task <List<Poste>> GetPostes();
 
         [OperationContract]
         [WebGet(UriTemplate = "utilisateurs", ResponseFormat = WebMessageFormat.Json)]
@@ -38,11 +38,15 @@ namespace API
 
         [OperationContract]
         [WebGet(UriTemplate = "offres", ResponseFormat = WebMessageFormat.Json)]
-        List<Offre> GetOffres();
+       Task <List<Offre>> GetOffres();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "lastoffres", ResponseFormat = WebMessageFormat.Json)]
+        Task<List<Offre>> GetLastOffres();
 
         [OperationContract]
         [WebInvoke(UriTemplate = "offresFiltrer", Method ="POST", ResponseFormat = WebMessageFormat.Json)]
-        List<Offre> GetOffresFilter(Filtre filtre);
+       Task <List<Offre>> GetOffresFilter(Filtre filtre);
 
 
         [OperationContract]
@@ -51,11 +55,11 @@ namespace API
 
         [OperationContract]
         [WebInvoke(UriTemplate = "offres", Method = "PUT", ResponseFormat = WebMessageFormat.Json)]
-        int UpdateOffre(Offre offre);
+       Task <int> UpdateOffre(Offre offre);
 
         [OperationContract]
         [WebInvoke(UriTemplate = "offres", Method = "DELETE", ResponseFormat = WebMessageFormat.Json)]
-        int DeleteOffre(Offre offre);
+        Task <int> DeleteOffre(Offre offre);
     }
     
 }

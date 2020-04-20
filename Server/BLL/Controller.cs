@@ -11,14 +11,14 @@ namespace BLL
 {/// <summary>
 /// regroupe les méthodes des classes
 /// </summary>
-    public class Controller
+    public class Controller : IController
     {
         public List<Contrat> GetContrats()
         {
             return ConfigDAO.contratDAO.GetAllContrats();
 
         }
-        public List<Region> GetRegions ()
+        public List<Region> GetRegions()
         {
             return ConfigDAO.regionDAO.GetAllRegion();
 
@@ -65,6 +65,11 @@ namespace BLL
         public int DeleteOffre(Offre offre)
         {
             return ConfigDAO.offreDAO.DeleteOffre(offre);
+        }
+
+        public List<Offre> GetLastOffres()
+        {
+            return ConfigDAO.offreDAO.GetLastOffre();
         }
     }
 }

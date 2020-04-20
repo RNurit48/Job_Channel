@@ -14,8 +14,7 @@ namespace BO
     [DataContract]
     public  class Offre
     {
-        private int v;
-
+      
         [DataMember]
         public string Titre { get; set; }
         [DataMember]
@@ -31,7 +30,7 @@ namespace BO
         [DataMember]
         public string Lien { get; set; }
         [DataMember]
-        public int NumOffre { get; private set; }
+        public int NumOffre { get;  set; }
         public Offre()
         {
         }
@@ -76,5 +75,29 @@ namespace BO
 
         public Offre(int numOffre) { NumOffre = numOffre; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Offre offre &&
+                   Titre == offre.Titre &&
+                   Description == offre.Description &&
+                   DatePublication == offre.DatePublication &&
+                   EqualityComparer<Region>.Default.Equals(Region, offre.Region) &&
+                   EqualityComparer<Contrat>.Default.Equals(Contrat, offre.Contrat) &&
+                   EqualityComparer<Poste>.Default.Equals(Poste, offre.Poste) &&
+                   Lien == offre.Lien;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -2029585179;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Titre);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Description);
+            hashCode = hashCode * -1521134295 + DatePublication.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Region>.Default.GetHashCode(Region);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Contrat>.Default.GetHashCode(Contrat);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Poste>.Default.GetHashCode(Poste);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Lien);
+            return hashCode;
+        }
     }
 }

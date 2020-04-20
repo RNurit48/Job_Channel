@@ -111,19 +111,19 @@ namespace BLL
             //si pas de status ok alors renvoi d'une liste vide
             return new List<Preference>();
         }
-        public async Task<int> PostOffre(Offre offre)
+        public int PostOffre(Offre offre)
         {
             int resultat = 0;
             //instanciation d'un RestRequest avec la route et la méthode  appelé
             RestRequest requete = new RestRequest("offres", Method.POST);
             requete.AddJsonBody(ParseJson(offre));
             //envoi de la requête avec attente de la réponse et dé-sérialisation de la réponse 
-          Task  <IRestResponse<int>> retour = RestClient.ExecuteAsync<int>(requete);
+          IRestResponse<int> retour = RestClient.Execute<int>(requete);
             //si retour statut code ==200
-            await retour;
-            if (retour.Result.StatusCode == System.Net.HttpStatusCode.OK)
+           
+            if (retour.StatusCode == HttpStatusCode.OK)
             {
-                resultat = retour.Result.Data;
+                resultat = retour.Data;
                 //retour des data
                 return resultat;
             }
@@ -144,6 +144,23 @@ namespace BLL
             IRestResponse<List<Offre>> retour = RestClient.Execute<List<Offre>>(requete);
             //si retour status code ==200
             if (retour.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //retour des data
+                return retour.Data;
+            }
+            //si pas de status ok alors renvoi d'une liste vide
+            return new List<Offre>();
+        }
+
+        public List<Offre> GetLastOffres()
+        {
+
+            //instanciation d'un RestRequest avec la route et la méthode GET appelé
+            RestRequest requete = new RestRequest("lastoffres", Method.GET);
+            //envoi de la requete avec attente de la reponse et désérialisation de la reponse en liste de région
+            IRestResponse<List<Offre>> retour = RestClient.Execute<List<Offre>>(requete);
+            //si retour status code ==200
+            if (retour.StatusCode == HttpStatusCode.OK)
             {
                 //retour des data
                 return retour.Data;

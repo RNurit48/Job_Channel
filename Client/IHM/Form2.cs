@@ -151,19 +151,20 @@ namespace Job_Channel
             BO.Region region = ((BO.Region)CB_FiltreR.SelectedItem).Id_Region == -1 ? null :(BO.Region)CB_FiltreR.SelectedItem;
             Contrat contrat = ((Contrat)CB_FiltreC.SelectedItem).Id_Contrat == -1 ? null : (Contrat)CB_FiltreC.SelectedItem;
             Poste poste = ((Poste)CB_FiltreP.SelectedItem).Id_Poste == -1 ? null : (Poste)CB_FiltreP.SelectedItem;
-           
+            DateTime debut = DTP_Debut.Value.Date;
+            DateTime fin = DTP_Fin.Value.Date;
 
-            
+
             try
             {
-                if (region == null && contrat == null && poste == null)
+                if (region == null && contrat == null && poste == null && fin == debut)
                 {
                     AppelDonnées();
                     
                 }
                 else
                 {
-                    DGV_Offre.DataSource = controller.GetOffresFiltrers(new Filtre(region, contrat, poste));
+                    DGV_Offre.DataSource = controller.GetOffresFiltrers(new Filtre(region, contrat, poste, debut, fin));
                 }
                
 
@@ -173,6 +174,27 @@ namespace Job_Channel
             
 
 
+        }
+
+        private void DTP_Debut_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshOffreSelectioned();
+        }
+
+        private void DTP_Fin_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshOffreSelectioned();
+        }
+
+        private void Btn_10Last_Click(object sender, EventArgs e)
+        {
+            DGV_Offre.DataSource = controller.GetLastOffres();
+
+    }
+
+        private void Btn_All_Click(object sender, EventArgs e)
+        {
+            AppelDonnées();
         }
     }
 }

@@ -18,21 +18,21 @@ namespace API
     // REMARQUE : pour lancer le client test WCF afin de tester ce service, sélectionnez Service1.svc ou Service1.svc.cs dans l'Explorateur de solutions et démarrez le débogage.
     public class Service1 : IAnnonce
     {
-        private OffreDAO objoffre;
+       
         Controller Controller = new Controller();
-        public List<Contrat> GetContrats()
+        public Task<List<Contrat>> GetContrats()
         {
-           return Controller.GetContrats();
+           return Task.FromResult(Controller.GetContrats());
         }
 
-        public List<Region> GetRegion()
+        public Task <List<Region>> GetRegion()
         {
-            return Controller.GetRegions();
+            return Task.FromResult(Controller.GetRegions());
         }
 
-        public List<Poste> GetPostes()
+        public  Task <List<Poste>> GetPostes()
         {
-            return Controller.GetPostes();
+            return Task.FromResult(Controller.GetPostes());
         }
 
         public Task <List<Utilisateur>> GetUtilisateurs()
@@ -44,9 +44,9 @@ namespace API
         {
             return  Task.FromResult(Controller.GetPreferences()); 
         }
-        public List<Offre> GetOffres()
+        public Task <List<Offre>> GetOffres()
         {
-            return Controller.GetOffres();
+            return Task.FromResult(Controller.GetOffres());
         }
 
         public Task <int> InsertOffre(Offre offre)
@@ -54,20 +54,25 @@ namespace API
             return Task.FromResult((offre != null ? Controller.InsertOffre(offre) : 0));
         }
 
-        public int UpdateOffre(Offre offre)
+        public Task <int> UpdateOffre(Offre offre)
         {
-            return (offre != null ? Controller.UpdateOffre(offre) : 0);
+            return Task.FromResult((offre != null ? Controller.UpdateOffre(offre) : 0));
         }
 
-        public int DeleteOffre(Offre offre)
+        public Task <int> DeleteOffre(Offre offre)
         {
-            return (offre != null ? Controller.DeleteOffre(offre) : 0);
+            return Task.FromResult(offre != null ? Controller.DeleteOffre(offre) : 0);
         }
 
        
-        public List<Offre> GetOffresFilter(Filtre filtre)
+        public Task <List<Offre>> GetOffresFilter(Filtre filtre)
         {
-             return Controller.GetOffresFilter(filtre);
+             return Task.FromResult(Controller.GetOffresFilter(filtre));
+        }
+
+        public Task<List<Offre>> GetLastOffres()
+        {
+            return Task.FromResult(Controller.GetLastOffres());
         }
     }
 }

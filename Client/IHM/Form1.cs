@@ -19,6 +19,7 @@ namespace Job_Channel
         private Controller objcontroller;
 
         #region BindingSources
+
         #region Poste
         private BindingSource bsPoste = new BindingSource();
         private Poste PosteCourant;
@@ -38,38 +39,58 @@ namespace Job_Channel
             InitializeComponent();
             objcontroller = new Controller();
             title_tool.SetToolTip(DTP_DatePublication, "Date  de publication de l'offre");
+            BTN_Publier.Enabled = false;
 
             //La Combobox est liée à une collection d'objets métiers 
 
             // Liaison entre la ComboBox et définition de l'élément à afficher, et celui utilisé
             #region CB_Poste
 
-            bsPoste.DataSource = objcontroller.GetAllPostes();
+            List<Poste> ListPostes = new List<Poste>
+            {
+                new Poste() { Id_Poste = -1, Type = "--  Type poste  --" }
+            };
+            ListPostes.AddRange(objcontroller.GetAllPostes());
+            bsPoste.DataSource = ListPostes;
             CB_Poste.DataSource = bsPoste;
+
+            //bsPoste.DataSource = objcontroller.GetAllPostes();
+            //CB_Poste.DataSource = bsPoste;
             CB_Poste.DisplayMember = "Type";
             CB_Poste.ValueMember = "Id_Poste";
             #endregion
             #region CB_Contrat
 
-            bsContrat.DataSource = objcontroller.GetAllContrats();
+            List<Contrat> ListContrat = new List<Contrat>
+            {
+                new Contrat() { Id_Contrat = -1, Type = "--  Type Contrat  --" }
+            };
+            ListContrat.AddRange(objcontroller.GetAllContrats());
+            bsContrat.DataSource = ListContrat;
             CB_Contrat.DataSource = bsContrat;
+
+            //bsContrat.DataSource = objcontroller.GetAllContrats();
+            //CB_Contrat.DataSource = bsContrat;
             CB_Contrat.DisplayMember = "Type";
             CB_Contrat.ValueMember = "Id_Contrat";
             #endregion
             #region CB_Region
 
-            bsRegion.DataSource = objcontroller.GetAllRegions();
+            List<BO.Region> listRegions = new List<BO.Region>
+            {
+                new BO.Region() { Id_Region = -1, Nom = "--  Region  --" }
+            };
+            listRegions.AddRange(objcontroller.GetAllRegions());
+            bsRegion.DataSource = listRegions;
             CB_Region.DataSource = bsRegion;
+
+            //bsRegion.DataSource = objcontroller.GetAllRegions();
+            //CB_Region.DataSource = bsRegion;
             CB_Region.DisplayMember = "Nom";
             CB_Region.ValueMember = "Id_Region";
-            #endregion
-
-            //BTN_Publier.Enabled = false;
-            #region Check
-            //if (TxB_Description.Text != "Entrer la description de l\'offre" && TxB_Titre.Text != "Entrer le titre de l\'offre" && CB_Poste != null && CB_Region != null && CB_Contrat != null)
-            //{
-            //    BTN_Publier.Enabled = true;
-            //}
+            this.CB_Poste.SelectedIndexChanged += new System.EventHandler(this.CB_Poste_SelectedIndexChanged);
+            this.CB_Contrat.SelectedIndexChanged += new System.EventHandler(this.CB_Contrat_SelectedIndexChanged);
+            this.CB_Region.SelectedIndexChanged += new System.EventHandler(this.CB_Region_SelectedIndexChanged);
             #endregion
         }
 
@@ -80,32 +101,47 @@ namespace Job_Channel
             //Quand un nouveau département est sélectionné dans la combo
             //Les employés du département sont affichés dans la DataGrid
 
-            if (CB_Poste.SelectedValue != null)
+            if (((Poste)CB_Poste.SelectedItem).Id_Poste != -1)
             {
                 PosteCourant = (Poste)CB_Poste.SelectedItem;
-                bsPoste.DataSource = PosteCourant.Type;
-               
+                BTN_Publier.Enabled = true;
             }
-
+            else
+            {
+                BTN_Publier.Enabled = false;
+            }
         }
+
         private void CB_Contrat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CB_Contrat.SelectedValue != null)
+
+            if (((Contrat)CB_Contrat.SelectedItem).Id_Contrat != -1)
             {
                 ContratCourant = (Contrat)CB_Contrat.SelectedItem;
-                bsContrat.DataSource = ContratCourant.Type;
+              
+                BTN_Publier.Enabled = true;
             }
-
+            else
+            {
+                BTN_Publier.Enabled = false;
+            }
         }
+
         private void CB_Region_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CB_Region.SelectedValue != null)
+            if (((BO.Region)CB_Region.SelectedItem).Id_Region != -1)
             {
                 RegionCourant = (BO.Region)CB_Region.SelectedItem;
-                bsRegion.DataSource = RegionCourant.Nom;
+                BTN_Publier.Enabled = true;
+            }
+            else
+            {
+                BTN_Publier.Enabled = false;
             }
 
         }
+
+
         #endregion
 
         private void BTN_Publier_Click(object sender, EventArgs e)
@@ -123,6 +159,9 @@ namespace Job_Channel
             int resultat = Convert.ToInt32(objcontroller.PostOffre(f));
 
           
+
+
+
             
                 MessageBox.Show($"{resultat} offre ajouté");
            
@@ -135,6 +174,6 @@ namespace Job_Channel
             Form2.Show();
         }
 
-    
+       
     }
 }
