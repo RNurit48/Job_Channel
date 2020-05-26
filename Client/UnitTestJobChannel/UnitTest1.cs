@@ -11,6 +11,7 @@ namespace UnitTestJobChannel
 	[TestClass]
 	public class UnitTest1
 	{
+
 		Controller c = new Controller();
 	
 		[TestMethod]
